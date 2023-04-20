@@ -15,4 +15,17 @@ async function authenticateAccount(page: Page) {
 
 test(authenticateAccount)('test', async ({ page }) => {
   await page.goto('https://middenboskoop.baanreserveren.nl/');
+  await page
+    .getByRole('row', {
+      name: '17:30 17:30 17:30 Den hollander (32,00) GAST GAST GAST 17:30',
+      exact: true,
+    })
+    .getByTitle('Padel indoor 4')
+    .click();
+  await page.locator('select[name="players\\[2\\]"]').selectOption('-1');
+  await page.locator('select[name="players\\[3\\]"]').selectOption('-1');
+  await page.locator('select[name="players\\[4\\]"]').selectOption('-1');
+  await page.getByRole('button', { name: 'Verder' }).click();
+  await page.getByRole('button', { name: 'Bevestigen' }).click();
+  await page.getByRole('button', { name: 'Betalen' }).click();
 });
