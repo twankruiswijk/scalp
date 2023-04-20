@@ -17,7 +17,7 @@ const desiredStartTimes = ['19:30', '20:00', '20:30'];
 
 test(authenticateAccount)('test', async ({ page }) => {
   await page.goto(
-    'https://middenboskoop.baanreserveren.nl/reservations/2023-04-28/sport/1272'
+    'https://middenboskoop.baanreserveren.nl/reservations/2023-04-27/sport/1272'
   );
 
   await page
@@ -27,7 +27,7 @@ test(authenticateAccount)('test', async ({ page }) => {
     })
     .locator('[type="free"]')
     .first()
-    .click();
+    .click({ timeout: 1000 });
 
   await page.locator('select[name="players\\[2\\]"]').selectOption('-1');
   await page.locator('select[name="players\\[3\\]"]').selectOption('-1');
