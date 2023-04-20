@@ -6,7 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "test:boskoop": "playwright test --headed -- boskoop",
+    "test:meetandplay": "playwright test --headed -- boskoop"
   },
   "keywords": [],
   "author": "",
