@@ -1,9 +1,12 @@
 import { test, expect } from "@playwright/test";
 
+const bookUrl = "https://meetandplay.nl/?sport=padel";
+
 test("test", async ({ page }) => {
-  await page.goto("https://meetandplay.nl/?sport=padel");
-  await page.waitForTimeout(5000);
-  await page.getByRole("button", { name: "Alle cookies accepteren" }).click();
+  await page.goto(bookUrl);
+  await page
+    .getByRole("button", { name: "Alle cookies accepteren" })
+    .click({ timeout: 5000 });
   await page.getByPlaceholder("Waar (Postcode of Plaats)").click();
   await page.getByPlaceholder("Waar (Postcode of Plaats)").fill("Schagen");
   await page.getByRole("button", { name: "Zoek" }).click();
