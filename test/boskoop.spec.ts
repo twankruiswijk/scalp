@@ -16,11 +16,8 @@ async function authenticateAccount(page: Page) {
 test(authenticateAccount)('test', async ({ page }) => {
   await page.goto('https://middenboskoop.baanreserveren.nl/');
   await page
-    .getByRole('row', {
-      name: '17:30 17:30 17:30 Den hollander (32,00) GAST GAST GAST 17:30',
-      exact: true,
-    })
-    .getByTitle('Padel indoor 4')
+    .getByRole('row', { name: '17:30 17:30 17:30 17:30', exact: true })
+    .getByTitle('Padel indoor 3')
     .click();
   await page.locator('select[name="players\\[2\\]"]').selectOption('-1');
   await page.locator('select[name="players\\[3\\]"]').selectOption('-1');
@@ -28,4 +25,8 @@ test(authenticateAccount)('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Verder' }).click();
   await page.getByRole('button', { name: 'Bevestigen' }).click();
   await page.getByRole('button', { name: 'Betalen' }).click();
+
+  await expect(page).toHaveURL(/https:\/\/www.mollie.com\/checkout\//);
+  // TODO notify Bart
+  console.log('Now at', page.url());
 });

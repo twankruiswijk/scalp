@@ -19,7 +19,7 @@ async function authenticateAccount(page: Page) {
 test(authenticateAccount)('test', async ({ page }) => {
   await page.goto(bookUrl);
 
-  await page.getByText('15:30').click();
+  await page.getByText('15:30', { exact: true }).click();
   await page
     .locator('a')
     .filter({
@@ -32,4 +32,8 @@ test(authenticateAccount)('test', async ({ page }) => {
   await page.getByRole('checkbox', { name: /Ik ga akkoord met de/ }).check();
 
   await page.getByRole('button', { name: /Betaling starten/ }).click();
+
+  await expect(page).toHaveURL(/https:\/\/www.mollie.com\/checkout\//);
+  // TODO notify Bart
+  console.log('Now at', page.url());
 });
