@@ -14,10 +14,13 @@ async function authenticateAccount(page: Page) {
 }
 
 test(authenticateAccount)('test', async ({ page }) => {
-  await page.goto('https://middenboskoop.baanreserveren.nl/');
+  await page.goto(
+    'https://middenboskoop.baanreserveren.nl/reservations/2023-04-21/sport/1272'
+  );
   await page
-    .getByRole('row', { name: '17:30 17:30 17:30 17:30', exact: true })
-    .getByTitle('Padel indoor 3')
+    .locator('tr[data-time="17:30"]')
+    .locator('[type="free"]')
+    .first()
     .click();
   await page.locator('select[name="players\\[2\\]"]').selectOption('-1');
   await page.locator('select[name="players\\[3\\]"]').selectOption('-1');
