@@ -17,22 +17,14 @@ const desiredStartTimes = ['19:30', '20:00', '20:30'];
 
 test(authenticateAccount)('test', async ({ page }) => {
   await page.goto(
-    'https://middenboskoop.baanreserveren.nl/reservations/2023-04-26/sport/1272'
+    'https://middenboskoop.baanreserveren.nl/reservations/2023-04-28/sport/1272'
   );
 
-  let startTime;
-  for (startTime of desiredStartTimes) {
-    const count = await page
-      .locator(`tr[data-time="${startTime}"]`)
-      .locator('[type="free"]')
-      .count();
-    if (count) {
-      break;
-    }
-  }
-
   await page
-    .locator(`tr[data-time="${startTime}"]`)
+    .locator('tr[data-time]', {
+      has: page.locator('[type="free"]'),
+      hasText: new RegExp(desiredStartTimes.join('|')),
+    })
     .locator('[type="free"]')
     .first()
     .click();
