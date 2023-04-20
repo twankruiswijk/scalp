@@ -14,4 +14,8 @@ test('test', async ({ page }) => {
     })
     .getByRole('button', { name: 'Boeken' })
     .click();
+
+  await page.getByRole('checkbox', { name: /Ik ga akkoord met de/ }).check();
+
+  await page.getByRole('button', { name: /Betaling starten/ }).click();
 });
