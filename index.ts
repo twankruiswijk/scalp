@@ -6,7 +6,7 @@ async function main() {
   });
 
   const page = await browser.newPage();
-  await page.goto("https://nu.nl");
+  await page.goto("https://meetandplay.nl/?sport=padel");
   await page.waitForTimeout(5000); // wait for 5 seconds
   await browser.close();
 }
