@@ -1,12 +1,9 @@
-import { test } from '@playwright/test';
+import { test } from '../fixtures/test';
 
 const bookUrl = 'https://meetandplay.nl/club/62745';
 
 test('test', async ({ page }) => {
   await page.goto(bookUrl);
-
-  await page.waitForSelector('.bcpGDPRLightbox');
-  await page.getByRole('button', { name: 'Alle cookies accepteren' }).click();
 
   await page.getByText('15:30').click();
   await page
