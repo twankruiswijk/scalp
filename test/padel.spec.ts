@@ -1,20 +1,13 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
-const bookUrl = "https://meetandplay.nl/?sport=padel";
+const bookUrl = "https://meetandplay.nl/club/62745";
 
 test("test", async ({ page }) => {
   await page.goto(bookUrl);
   await page
     .getByRole("button", { name: "Alle cookies accepteren" })
     .click({ timeout: 5000 });
-  await page.getByPlaceholder("Waar (Postcode of Plaats)").click();
-  await page.getByPlaceholder("Waar (Postcode of Plaats)").fill("Schagen");
-  await page.getByRole("button", { name: "Zoek" }).click();
-  await page
-    .getByRole("link", {
-      name: "9 KM T.P. Warmenhuizen Warmenhuizen 2 padelbanen Boeken",
-    })
-    .click();
+
   await page.getByText("15:30").click();
   await page
     .locator("a")
