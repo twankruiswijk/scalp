@@ -8,7 +8,7 @@
     "test:headed": "playwright test --headed",
     "start": "ts-node index.ts",
     "test:boskoop": "playwright test --headed -- boskoop",
-    "test:meetandplay": "playwright test --headed -- boskoop"
+    "test:meetandplay": "playwright test --headed -- meetandplay"
   },
   "keywords": [],
   "author": "",
